@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 if Post.count.zero?
 	puts 'Seeding Posts'
+	User.create!(email: 'user_first@mail.ru', password: 'abcabc', first_name: 'Alex', last_name: 'Skeete')
 	Post.create!(title: "Firs Post", content: "This is First post!!")
 	Post.create!(title: "Second Post", content: "This is Second post!!")
 	Post.create!(title: "Third Post", content: "This is Third post!!")

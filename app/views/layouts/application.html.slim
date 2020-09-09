@@ -13,9 +13,12 @@ html
         = link_to "ADS", root_path, id: "logo"
         nav
           ul.nav.navbar-nav.navbar-right
-            li= link_to "Posts",   'posts'
-            li= link_to "Sign up",  '#'
-            li= link_to "Log in", '#'
+            li= link_to "Posts",   posts_path
+            -if current_user
+              li= link_to "Log out", destroy_user_session_path, method: :delete
+            -else
+              li= link_to "Sign up", new_user_registration_path 
+              li= link_to "Log in", new_user_session_path
     .container
       = render_flash
       = yield
