@@ -1,0 +1,14 @@
+h3 Posts
+
+= link_to 'Add Post', new_post_path, class: 'btn btn-success pull-right'
+
+table.table.table-striped
+  thead
+    tr
+      th
+      th Title
+      th Content
+  tbody
+    = render @posts
+
+= paginate @posts, theme: 'twitter-bootstrap-3'
