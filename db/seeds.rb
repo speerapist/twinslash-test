@@ -7,8 +7,16 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 if Post.count.zero?
 	puts 'Seeding Posts'
+	Post.create!(title: "Firs Post", content: "This is First post!!", user_id: 1)
+	Post.create!(title: "Second Post", content: "This is Second post!!", user_id: 2)
+	Post.create!(title: "Third Post", content: "This is Third post!!", user_id: 1)
+	Post.create!(title: "4th Post", content: "This is 4th post!!", user_id: 2)
+	Post.create!(title: "5th Post", content: "This is 5th post!!", user_id: 2)
+	Post.create!(title: "6th Post", content: "This is 6th post!!", user_id: 1)
+end
+
+if User.count.zero?
+	puts 'Seeding Users'
 	User.create!(email: 'user_first@mail.ru', password: 'abcabc', first_name: 'Alex', last_name: 'Skeete')
-	Post.create!(title: "Firs Post", content: "This is First post!!")
-	Post.create!(title: "Second Post", content: "This is Second post!!")
-	Post.create!(title: "Third Post", content: "This is Third post!!")
+	User.create!(email: 'user_second@mail.ru', password: 'abcabc', first_name: 'Benedict', last_name: 'Oh')
 end

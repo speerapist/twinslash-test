@@ -1,11 +1,11 @@
-h3 Posts
+h3 User Posts
 
--if current_user
-  = link_to 'Add Post', new_post_path, class: 'btn btn-success pull-right'
+= link_to 'Add Post', new_post_path, class: 'btn btn-success pull-right'
 
 table.table.table-striped
   thead
     tr
+      th
       th Title
       th Content
       th Creator

@@ -10,10 +10,10 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.new(post_params)
 
     if@post.save
-      redirect_to posts_path, notice: "Post created successfully"
+      redirect_to user_posts_posts_path, notice: "Post created successfully"
     else
       flash.now[:alert] = 'Failed to create post'
       render :new
@@ -40,8 +40,12 @@ class PostsController < ApplicationController
     end
   end
 
+  def user_posts
+    @posts = Post.where("user_id = ?", "#{current_user.id}").order(id: :desc).page(params[:page]).per(10)
+  end
+
   def post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :content, :user_id)
   end
 
   def set_post
