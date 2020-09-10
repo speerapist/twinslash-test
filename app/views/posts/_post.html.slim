@@ -1,4 +1,14 @@
 tr
+  -if can? :create, post
+    td
+      .btn-group-vertical role="group"
+        = link_to [:edit, post], class: 'btn btn-primary btn-sm' do
+          span.glyphicon.glyphicon-pencil aria-hidden="true"
+        -if can? :destroy, post  
+          = link_to [post], class: 'btn btn-danger btn-sm', method: :delete do
+            span.glyphicon.glyphicon-trash aria-hidden="true"
+  -else 
+    td
   td= post.title
   td= post.content
   td= User.find(post.user_id).first_name
