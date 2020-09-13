@@ -2,6 +2,12 @@ tr
   -if can? :create, post
     td
       .btn-group-vertical role="group"
+        -if post.status != 'new_post'
+          = link_to [:status_new, post], class: 'btn btn-success btn-sm', method: :put do
+            span.glyphicon.glyphicon-check aria-hidden="true"
+        -else
+          = link_to [:status_draft, post], class: 'btn btn-success btn-sm', method: :put do
+            span.glyphicon.glyphicon-chevron-left aria-hidden="true"
         = link_to [:edit, post], class: 'btn btn-primary btn-sm' do
           span.glyphicon.glyphicon-pencil aria-hidden="true"
         -if can? :destroy, post  
@@ -12,3 +18,4 @@ tr
   td= post.title
   td= post.content
   td= User.find(post.user_id).first_name
+  td= post.status

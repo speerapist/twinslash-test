@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:edit, :update, :destroy]
+  before_action :set_post, only: [:edit, :update, :destroy, :status_new, :status_draft]
 
   def index
     @posts = Post.order(id: :desc).page(params[:page]).per(10)
@@ -38,6 +38,16 @@ class PostsController < ApplicationController
       flash.now[:alert] = 'Failed to edit post'
       render :edit
     end
+  end
+
+  def status_new
+    @post.update_attributes status: 1
+    redirect_to user_posts_posts_path, notice: "Success! Post will be published after admin approval."
+  end
+
+  def status_draft
+    @post.update_attributes status: 0
+    redirect_to user_posts_posts_path, notice: "Post was successfully converted to Draft Type."
   end
 
   def user_posts
