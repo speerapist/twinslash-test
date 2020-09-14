@@ -1,7 +1,15 @@
 h3 Posts
 
--if current_user && !current_user.admin
-  = link_to 'Add Post', new_post_path, class: 'btn btn-success pull-right'
+.row
+  -if current_user && !current_user.admin
+    = link_to 'Add Post', new_post_path, class: 'btn btn-success pull-right'
+
+.row
+  '  '    
+
+= render 'search_form'
+
+= sort_link(@q, :created_at)
 
 table.table.table-striped
   thead

@@ -2,7 +2,8 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:edit, :update, :destroy, :status_new, :status_draft]
 
   def index
-    @posts = Post.order(id: :desc).page(params[:page]).per(10)
+    @q = Post.ransack(params[:q])
+    @posts = @q.result.order(id: :desc).page(params[:page]).per(10)
   end
 
   def new
@@ -51,11 +52,13 @@ class PostsController < ApplicationController
   end
 
   def user_posts
-    @posts = Post.where("user_id = ?", "#{current_user.id}").order(id: :desc).page(params[:page]).per(10)
+    @posts = current_user.posts.order(created_at: :desc).page(params[:page]).per(10)
   end
 
+  private
+
   def post_params
-    params.require(:post).permit(:title, :content, :user_id)
+    params.require(:post).permit(:title, :content, :user_id, :status, :post_type_id)
   end
 
   def set_post

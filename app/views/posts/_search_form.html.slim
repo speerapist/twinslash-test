@@ -1,0 +1,7 @@
+.row
+  = search_form_for @q, builder: SimpleForm::FormBuilder, wrapper: :horizontal_form, class: 'form-horizontal' do |f|
+    .col-md-6
+      = f.input :user_id_eq, collection: User.all.where(admin: false).map{ |t| ["#{t.first_name} #{t.last_name}", t.id] }, required: false, label: 'Creator'
+    .col-md-6
+      = f.input :post_type_id_eq, collection: PostType.all.map{ |t| [t.name, t.id] }, required: false, label: 'Type'
+      = f.button :submit, 'Search', class: 'btn btn-primary pull-right'
