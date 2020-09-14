@@ -15,7 +15,8 @@ tr
             span.glyphicon.glyphicon-trash aria-hidden="true"
   -else 
     td
-  td= post.title
+  td
+    = link_to t("#{post.title}"), post
   td= post.content
   td= User.find(post.user_id).first_name
   td= post.status

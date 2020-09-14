@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   root 'ads#home'
 
-  resources :posts, except: :show do
+  resources :posts do
   	member do
   		put :status_new
   		put :status_draft

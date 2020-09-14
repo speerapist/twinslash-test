@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:edit, :update, :destroy, :status_new, :status_draft]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :status_new, :status_draft]
 
   def index
     @q = Post.ransack(params[:q])
@@ -8,6 +8,9 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+  end
+
+  def show
   end
 
   def create
