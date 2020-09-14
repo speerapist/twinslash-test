@@ -20,3 +20,8 @@ if User.count.zero?
 	User.create!(email: 'user_first@mail.ru', password: 'abcabc', first_name: 'Alex', last_name: 'Skeete')
 	User.create!(email: 'user_second@mail.ru', password: 'abcabc', first_name: 'Benedict', last_name: 'Oh')
 end
+
+if User.count == 2
+	puts 'Seeding Admin'
+	User.create!(email: 'admin@mail.ru', password: 'abcabc', first_name: 'admin', last_name: 'admin', admin: true)
+end

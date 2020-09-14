@@ -14,7 +14,10 @@ html
         nav
           ul.nav.navbar-nav.navbar-right
             li= link_to "Posts",   posts_path
-            -if current_user
+            -if current_user && current_user.admin
+              li= link_to "Admin panel", rails_admin.dashboard_path
+              li= link_to "#{current_user.first_name}  #{current_user.first_name}", '#'
+            -elsif current_user && !current_user.admin
               li= link_to "My posts", user_posts_posts_path
               li= link_to "Log out", destroy_user_session_path, method: :delete
             -else

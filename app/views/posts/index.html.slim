@@ -1,6 +1,6 @@
 h3 Posts
 
--if current_user
+-if current_user && !current_user.admin
   = link_to 'Add Post', new_post_path, class: 'btn btn-success pull-right'
 
 table.table.table-striped
