@@ -17,6 +17,6 @@
         = f.input :password_confirmation,              
           required: true,                              
           input_html: { autocomplete: "new-password" } 
-      .form-actions
-        = f.button :submit, "Sign up"
-    = render "devise/shared/links"
+      .col-md-7
+        .form-actions
+          = f.button :submit, "Sign up", class: 'btn btn-success pull-right'

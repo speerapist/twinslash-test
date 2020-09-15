@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   	collection do
   	  get 'user_posts' => 'posts#user_posts', as: :user_posts
+      get 'user_archive' => 'posts#user_archive', as: :user_archive
   	end
   end
   

@@ -58,6 +58,10 @@ class PostsController < ApplicationController
     @posts = current_user.posts.order(created_at: :desc).page(params[:page]).per(10)
   end
 
+  def user_archive
+    @posts = current_user.posts.where(status: 5).order(created_at: :desc).page(params[:page]).per(10)
+  end
+
   private
 
   def post_params

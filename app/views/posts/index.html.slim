@@ -18,7 +18,8 @@ table.table.table-striped
       th Title
       th Content
       th Creator
-      th Status
+      -if current_user
+        th Status
   tbody
     = render @posts
 
