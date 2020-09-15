@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :status_new, :status_draft]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :status_new, :status_draft,]
 
   def index
     @q = Post.ransack(params[:q])
@@ -37,7 +37,7 @@ class PostsController < ApplicationController
 
   def update
     if@post.update(post_params)
-      redirect_to posts_path, notice: "Post successfully edited"
+      redirect_to request.referrer, notice: "Post successfully edited"
     else
       flash.now[:alert] = 'Failed to edit post'
       render :edit
@@ -62,13 +62,20 @@ class PostsController < ApplicationController
     @posts = current_user.posts.where(status: 5).order(created_at: :desc).page(params[:page]).per(10)
   end
 
+  def delete_image
+    @image = ActiveStorage::Attachment.find(params[:image_id])
+    @image.purge
+    redirect_to request.referrer, notice: "Image deleted successfully"
+  end
+
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :user_id, :status, :post_type_id)
+    params.require(:post).permit(:title, :content, :user_id, :status, :post_type_id, images: [])
   end
 
   def set_post
     @post = Post.find(params[:id])
+    @post = Post.with_attached_images.find(params[:id]) if @post.images.attached?
   end
 end

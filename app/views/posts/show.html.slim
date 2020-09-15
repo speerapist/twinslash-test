@@ -1,5 +1,10 @@
 .center.jumbotron
   h1 #{@post.title}
   h2 #{@post.content}
-  -if can? :update, @post
-    = link_to 'Edit', edit_post_path, class: 'btn btn-primary'
+  -if @post.images.attached?
+    -@post.images.each do |image|
+      = image_tag image.variant(resize: "300x300")
+
+  h3
+   -if can? :edit, @post
+       = link_to 'Edit', edit_post_path, class: 'btn btn-primary'

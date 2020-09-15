@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   	member do
   		put :status_new
   		put :status_draft
+      delete :delete_image
   	end
 
   	collection do

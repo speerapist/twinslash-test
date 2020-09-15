@@ -1,5 +1,22 @@
 = simple_form_for @post do |f|
   = f.input :title
   = f.input :content
+  = f.file_field :images, multiple: true
+  -if @post.images.attached?
+    table.table.table-sm.table-bordered[style="margin-top: 20px"]
+      thead
+        tr
+          th.text-center
+            | Image
+          th.text-center
+            | Action
+      tbody
+        - @post.images.each do |image|
+          tr
+            td.text-center
+              = image_tag image.variant(resize: "80x80")
+            td.text-center
+              = link_to 'Delete', delete_image_post_path(@post, image_id: image), method: :delete, class: 'btn btn-sm btn-danger'
+
   = f.button :submit, 'Save', class: 'btn btn-primary'
   = link_to 'Cancel', posts_path, class: 'btn btn-default'
