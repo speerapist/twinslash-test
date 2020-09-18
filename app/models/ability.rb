@@ -10,8 +10,8 @@ class Ability
         can [:create, :user_posts], Post, user_id: user.id
         can :destroy, Post, user_id: user.id
         can :update, Post, user_id: user.id, status: 0
-        can :status_new, Post, user_id: user.id, status: [0, 2]
-        can :status_draft, Post, user_id: user.id, status: 5
+        can :status_new, Post, user_id: user.id, status: 0
+        can :status_draft, Post, user_id: user.id, status: [5, 2]
     end
   end
 end
