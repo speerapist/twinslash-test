@@ -28,6 +28,7 @@ ru:
   creator: "Создатель"
   type: "Тип"
   add_post: "Добавить Объявление"
+  are_you_sure: "Вы увеерены?"
   admin:
     js:
       true: 'True'

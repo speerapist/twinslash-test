@@ -4,7 +4,11 @@ class PostsController < ApplicationController
 
   def index
     @q = Post.ransack(params[:q])
-    @posts = @q.result.where(status: 'published').order(id: :desc).page(params[:page]).per(10)
+    if params[:query]
+      @posts = Post.where(status: 'published').search_by_title_and_content(params[:query]).order(id: :desc).page(params[:page]).per(10)
+    else
+      @posts = @q.result.where(status: 'published').order(id: :desc).page(params[:page]).per(10)
+    end
   end
 
   def new

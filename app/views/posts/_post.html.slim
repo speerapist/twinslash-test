@@ -11,7 +11,7 @@ tr
         -if can? :edit, post    
           = link_to [:edit, post], class: 'btn btn-primary btn-sm' do
             span.glyphicon.glyphicon-pencil aria-hidden="true" 
-        = link_to [post], class: 'btn btn-danger btn-sm', method: :delete do
+        = link_to [post], class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: t(:are_you_sure) } do
           span.glyphicon.glyphicon-trash aria-hidden="true"
   -else 
     td

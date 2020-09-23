@@ -6,7 +6,7 @@ class Ability
   def initialize(user)
     can :read, :all
 
-     user.present?
+     if user.present?
       can %i[create user_posts user_archive], Post, user_id: user.id
       can :destroy, Post, user_id: user.id
       can :update, Post, user_id: user.id, status: 'draft'
