@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   load_and_authorize_resource
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :status_new, :status_draft,]
+  before_action :set_post, only: %i[show edit update destroy status_new status_draft]
 
   def index
     @q = Post.ransack(params[:q])
@@ -8,36 +8,34 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new()
+    @post = Post.new
   end
 
-  def show
-  end
+  def show; end
 
   def create
     @post = current_user.posts.new(post_params)
-    if@post.save
-      redirect_to user_posts_posts_path, notice: "Post created successfully"
+    if @post.save
+      redirect_to user_posts_posts_path, notice: 'Post created successfully'
     else
       flash.now[:alert] = 'Failed to create post'
       render :new
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def destroy
     if @post.destroy
-      redirect_to posts_path, notice: "Post successfully deleted"
+      redirect_to posts_path, notice: 'Post successfully deleted'
     else
-      redirect_to posts_path, alert: "Failed to delete post"
+      redirect_to posts_path, alert: 'Failed to delete post'
     end
   end
 
   def update
-    if@post.update(post_params)
-      redirect_to request.referrer, notice: "Post successfully edited"
+    if @post.update(post_params)
+      redirect_to request.referrer, notice: 'Post successfully edited'
     else
       flash.now[:alert] = 'Failed to edit post'
       render :edit
@@ -46,12 +44,12 @@ class PostsController < ApplicationController
 
   def status_new
     @post.update_attributes status: 'new_post'
-    redirect_to user_posts_posts_path, notice: "Success! Post will be published after admin approval."
+    redirect_to user_posts_posts_path, notice: 'Success! Post will be published after admin approval.'
   end
 
   def status_draft
     @post.update_attributes status: 'draft'
-    redirect_to user_posts_posts_path, notice: "Post was successfully converted to Draft Type."
+    redirect_to user_posts_posts_path, notice: 'Post was successfully converted to Draft Type.'
   end
 
   def user_posts
@@ -65,7 +63,7 @@ class PostsController < ApplicationController
   def delete_image
     @image = ActiveStorage::Attachment.find(params[:image_id])
     @image.purge
-    redirect_to request.referrer, notice: "Image deleted successfully"
+    redirect_to request.referrer, notice: 'Image deleted successfully'
   end
 
   private

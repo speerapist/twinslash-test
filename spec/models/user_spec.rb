@@ -12,7 +12,8 @@ RSpec.describe User, type: :model do
         id: 2,
         email: 'sample_email@gmail.com ',
         first_name: 'sample',
-        last_name: 'sample').save
+        last_name: 'sample'
+      ).save
       expect(user).to eq(false)
     end
 
@@ -21,7 +22,8 @@ RSpec.describe User, type: :model do
         id: 2,
         email: 'sample_email@gmail.com ',
         first_name: 'sample',
-        password: 'sample').save
+        password: 'sample'
+      ).save
       expect(user).to eq(false)
     end
 
@@ -30,7 +32,8 @@ RSpec.describe User, type: :model do
         id: 2,
         email: 'sample_email@gmail.com ',
         password: 'sample',
-        last_name: 'sample').save
+        last_name: 'sample'
+      ).save
       expect(user).to eq(false)
     end
 
@@ -39,7 +42,8 @@ RSpec.describe User, type: :model do
         id: 3, email: 'sample_email@gmail.com',
         password: 'sample',
         first_name: 'sample',
-        last_name: 'sample').save
+        last_name: 'sample'
+      ).save
       expect(user).to eq(true)
     end
   end

@@ -1,5 +1,4 @@
 RailsAdmin.config do |config|
-
   ### Popular gems integration
 
   ## == Devise ==
@@ -25,7 +24,7 @@ RailsAdmin.config do |config|
 
   config.model 'Post' do
     edit do
-      field :status 
+      field :status
       field :post_type
     end
     list do
