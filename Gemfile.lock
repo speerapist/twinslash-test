@@ -315,6 +315,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   devise
   faker!
+  i18n
   jbuilder (~> 2.7)
   jquery-rails
   kaminari

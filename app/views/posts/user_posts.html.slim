@@ -1,15 +1,15 @@
-h3 My Posts
+h3 = t(:my_posts)
 
-= link_to 'Add Post', new_post_path, class: 'btn btn-success pull-right'
+= link_to t(:add_post), new_post_path, class: 'btn btn-success pull-right'
 
 table.table.table-striped
   thead
     tr
       th
-      th Title
-      th Content
-      th Creator
-      th Status
+      th = t(:title)
+      th = t(:description)
+      th = t(:creator)
+      th = t(:status)
   tbody
     = render @posts
 

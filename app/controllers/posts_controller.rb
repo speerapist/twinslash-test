@@ -1,13 +1,14 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_post, only: [:show, :edit, :update, :destroy, :status_new, :status_draft,]
 
   def index
     @q = Post.ransack(params[:q])
-    @posts = @q.result.where(status: 4).order(id: :desc).page(params[:page]).per(10)
+    @posts = @q.result.where(status: 'published').order(id: :desc).page(params[:page]).per(10)
   end
 
   def new
-    @post = Post.new
+    @post = Post.new()
   end
 
   def show
@@ -15,7 +16,6 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-
     if@post.save
       redirect_to user_posts_posts_path, notice: "Post created successfully"
     else
@@ -45,12 +45,12 @@ class PostsController < ApplicationController
   end
 
   def status_new
-    @post.update_attributes status: 1
+    @post.update_attributes status: 'new_post'
     redirect_to user_posts_posts_path, notice: "Success! Post will be published after admin approval."
   end
 
   def status_draft
-    @post.update_attributes status: 0
+    @post.update_attributes status: 'draft'
     redirect_to user_posts_posts_path, notice: "Post was successfully converted to Draft Type."
   end
 
@@ -59,7 +59,7 @@ class PostsController < ApplicationController
   end
 
   def user_archive
-    @posts = current_user.posts.where(status: 5).order(created_at: :desc).page(params[:page]).per(10)
+    @posts = current_user.posts.where(status: 'archived').order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def delete_image

@@ -41,6 +41,7 @@ gem 'ransack'
 gem 'mini_magick'
 gem 'whenever'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+gem 'i18n'
 
 group :development, :test do
   gem 'rspec-rails', '~> 4.0.1'

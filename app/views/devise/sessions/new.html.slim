@@ -1,15 +1,17 @@
 .row
   .col-sm-offset-4.col-sm-4
-    h1 Log in
+    h1 = t(:sign_in)
     = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .form-inputs
         = f.input :email,                       
           required: false,                      
           autofocus: true,                      
-          input_html: { autocomplete: "email" } 
+          input_html: { autocomplete: "email" },
+          label: t(:email)
         = f.input :password,                               
           required: false,                                 
-          input_html: { autocomplete: "current-password" } 
-        = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+          input_html: { autocomplete: "current-password" },
+          label: t(:password) 
+        = f.input :remember_me, label: t(:remember), as: :boolean if devise_mapping.rememberable?
       .form-actions
-        = f.button :submit, "Log in", class: 'btn btn-success'
+        = f.button :submit, t(:sign_in), class: 'btn btn-success'

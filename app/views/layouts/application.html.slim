@@ -13,17 +13,21 @@ html
         = link_to "ADS", root_path, id: "logo"
         nav
           ul.nav.navbar-nav.navbar-right
-            li= link_to "Posts",   posts_path
+            - if I18n.locale == :en
+              li= link_to 'RU', locale: :ru
+            - else I18n.locale == :ru
+              li= link_to 'EN', locale: :en
+            li= link_to t(:posts), posts_path
             -if current_user && current_user.admin
-              li= link_to "Admin panel", rails_admin.dashboard_path
+              li= link_to t(:nav_admin_panel), rails_admin.dashboard_path
             -elsif current_user && !current_user.admin
-              li= link_to "My posts", user_posts_posts_path
-              li= link_to "Archive", user_archive_posts_path
+              li= link_to t(:my_posts), user_posts_posts_path
+              li= link_to t(:archive), user_archive_posts_path
               li= link_to "#{current_user.first_name} #{current_user.last_name}", edit_user_registration_path
-              li= link_to "Log out", destroy_user_session_path, method: :delete
+              li= link_to t(:sign_out), destroy_user_session_path, method: :delete
             -else
-              li= link_to "Sign up", new_user_registration_path 
-              li= link_to "Log in", new_user_session_path
+              li= link_to t(:sign_up), new_user_registration_path 
+              li= link_to t(:sign_in), new_user_session_path
     .container
       = render_flash
       = yield

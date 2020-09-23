@@ -1,25 +1,23 @@
-h3 Posts
+h3 = t(:posts)
 
 .row
   -if current_user && !current_user.admin
-    = link_to 'Add Post', new_post_path, class: 'btn btn-success pull-right'
+    = link_to t(:add_post), new_post_path, class: 'btn btn-success pull-right'
 
 .row
   '  '    
 
 = render 'search_form'
 
-= sort_link(@q, :created_at)
-
 table.table.table-striped
   thead
     tr
       th
-      th Title
-      th Content
-      th Creator
+      th = t(:title)
+      th = t(:description)
+      th = t(:creator)
       -if current_user
-        th Status
+        th = t(:status)
   tbody
     = render @posts
 
