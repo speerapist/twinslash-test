@@ -10,8 +10,8 @@ RSpec.describe Post, type: :model do
       expect(post).to eq(false)
     end
 
-    it 'header length must be no more than 16' do
-      post = Post.new(title: 's' * 17, content: 'Sample', user_id: 1, post_type_id: 1).save
+    it 'header length must be no more than 100' do
+      post = Post.new(title: 's' * 101, content: 'Sample', user_id: 1, post_type_id: 1).save
       expect(post).to eq(false)
     end
 
