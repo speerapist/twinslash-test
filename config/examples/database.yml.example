@@ -1,0 +1,17 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: posts_development
+  pool: 5
+  timeout: 5000
+  username: 
+  password:  
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: posts_test
+  pool: 5
+  timeout: 5000
+  username:  
+  password: 

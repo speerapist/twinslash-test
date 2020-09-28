@@ -5,7 +5,7 @@
       = text_field_tag :query, params[:query], label: t(:search), class: 'form-control'
       = submit_tag t(:search), class: 'btn btn-sm btn-success'
 .row
-  = search_form_for @q, builder: SimpleForm::FormBuilder, wrapper: :horizontal_form, class: 'form-horizontal' do |f|
+  = search_form_for @q, remote: true, builder: SimpleForm::FormBuilder, wrapper: :horizontal_form, class: 'form-horizontal' do |f|
     .col-md-6
       = f.input :user_id_eq, collection: User.all.where(admin: false).map{ |t| ["#{t.first_name} #{t.last_name}", t.id] }, required: false, label: t(:creator)
     .col-md-6
