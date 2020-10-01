@@ -2,15 +2,4 @@ h3 = t(:archive)
 
 = link_to t(:add_post), new_post_path, class: 'btn btn-success pull-right'
 
-table.table.table-striped
-  thead
-    tr
-      th
-      th = t(:title)
-      th = t(:description)
-      th = t(:creator)
-      th = t(:status)
-  tbody
-    = render @posts
-
-= paginate @posts, theme: 'twitter-bootstrap-3'
+= render 'post'

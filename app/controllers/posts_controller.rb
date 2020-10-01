@@ -19,7 +19,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-    if @post.save
+    if @post.save!
       redirect_to user_posts_posts_path, notice: 'Post created successfully'
     else
       flash.now[:alert] = 'Failed to create post'
