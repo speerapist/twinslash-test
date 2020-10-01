@@ -1,4 +1,5 @@
 ru:
+  current_password: "Текущий пароль"
   posts: "Объявления"
   new_post: "Создать объявление"
   title: 'Название'

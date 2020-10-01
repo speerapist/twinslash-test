@@ -21,6 +21,10 @@
           required: true,
           label: t(:password_confirm),                              
           input_html: { autocomplete: "new-password" } 
+        = f.input :current_password,              
+          required: true,
+          label: t(:current_password),                              
+          input_html: { autocomplete: "new-password" } 
       .col-md-7
         .form-actions
           = f.button :submit, t(:save), class: 'btn btn-primary pull-right'
