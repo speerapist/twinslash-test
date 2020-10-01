@@ -1,33 +1,42 @@
 require 'test_helper'
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
+  
+  def setup
+    @post = posts(:one)
+  end
+
   test 'should get index' do
-    get posts_index_url
+    get posts_path
     assert_response :success
   end
 
   test 'should get new' do
-    get posts_new_url
-    assert_response :success
+    get new_post_path
+    assert_response :redirect
   end
 
   test 'should get create' do
-    get posts_create_url
-    assert_response :success
+    assert_no_difference 'Post.count' do
+      post posts_path, params: { post: { title: "Egor", content: "Egorov" } }
+    end
+    assert_redirected_to main_app.root_path
   end
 
   test 'should get edit' do
-    get posts_edit_url
-    assert_response :success
+    get edit_post_path(@post)
+    assert_response :redirect
   end
 
   test 'should get destroy' do
-    get posts_destroy_url
-    assert_response :success
+    assert_no_difference 'Post.count' do
+      delete post_path(@post)
+    end
+    assert_redirected_to main_app.root_path
   end
 
   test 'should get update' do
-    get posts_update_url
-    assert_response :success
+    put post_path(@post)
+    assert_response :redirect
   end
 end

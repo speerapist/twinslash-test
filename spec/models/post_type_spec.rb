@@ -17,10 +17,5 @@ RSpec.describe PostType, type: :model do
       post_type = PostType.create(name: 'sample')
       expect(post_type).to_not be_valid
     end
-
-    it 'name should be presence' do
-      post_type = PostType.new.save
-      expect(post_type).to eq(false)
-    end
   end
 end

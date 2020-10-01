@@ -25,11 +25,6 @@ RSpec.describe Post, type: :model do
       expect(post).to eq(false)
     end
 
-    it 'post_type_id should be presence' do
-      post = Post.new(title: 'Sample', content: 'Sample', user_id: 1).save
-      expect(post).to eq(false)
-    end
-
     it 'default status test' do
       post = Post.new(title: 'Sample', content: 'Sample', user_id: 1, post_type_id: 1)
       expect(post.status).to eq('draft')
